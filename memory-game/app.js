@@ -1,3 +1,4 @@
+// Variables
 const cardArray = [
     {
         name: "fries",
@@ -49,19 +50,16 @@ const cardArray = [
     }
 ]
 
-cardArray.sort(() => 0.5 - Math.random());
-// console.log(cardArray);
-
 const gridDisplay = document.querySelector("#grid");
-// console.log(gridDisplay);
+let resultsDisplay = document.getElementById("result");
 let chosenCards = [];
 let chosenIds = [];
 const cardsWon = [];
 
+// randomise card order
 cardArray.sort(() => 0.5 - Math.random());
-// console.log(cardArray);
 
-
+// Creation of randomised board
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {
         const card = document.createElement("img");
@@ -70,16 +68,9 @@ function createBoard() {
         card.addEventListener("click", flipCard);
         gridDisplay.appendChild(card);
     }
-
-    // cardArray.forEach(cardImage => {
-    //     const card = document.createElement("img");
-    //     card.setAttribute("src", cardImage.img);
-    //     card.setAttribute("data-id", cardArray.indexOf(cardImage));
-    //     gridDisplay.appendChild(card);
-    //     // console.log(card);
-    // })
 }
 
+// select 2 cards and check for equivalence
 function flipCard() {
     const cardId = this.getAttribute("data-id");
     chosenCards.push(cardArray[cardId].name);
@@ -88,11 +79,9 @@ function flipCard() {
     if (chosenCards.length === 2) {
         setTimeout(checkMatch, 500);
     }
-    // console.log(cardArray[cardId].name);
-    // console.log(cardId);
-    // console.log(chosenCards);
 }
 
+// major game function/sequence -> check match until won
 function checkMatch() {
     const cards = document.querySelectorAll("#grid img");
     if (chosenIds[0] === chosenIds[1]) {
@@ -110,6 +99,11 @@ function checkMatch() {
         cards[chosenIds[0]].setAttribute("src", "./images/blank.png");
         cards[chosenIds[1]].setAttribute("src", "./images/blank.png");
     }
+    
+    //record score
+    resultsDisplay.innerHTML = cardsWon.length;    
+
+    // reset cards for next selection of pairs
     chosenCards = [];
     chosenIds = [];
 
