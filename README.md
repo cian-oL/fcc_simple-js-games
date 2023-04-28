@@ -6,6 +6,8 @@ Practice assigning variables using document object methods, and then apply some 
 Practice simple use of objects and instances of changing attritubes.
 # Game 3: Whac-a-Mole - mole.html
 A mole will apply on a grid that must be struck in time. Use of timers and intervals involved.
+# Game 4: 
+The aim of the game is to breakout by detroying the blocks in your path. It will apply more JS logic.
 # Constraints
 - HTML
 - JS
